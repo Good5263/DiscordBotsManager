@@ -1,9 +1,26 @@
 import os
+import time
 import sqlite3
+import threading
 
-from PyQt5 import Qt
+from PyQt5 import Qt, QtCore
 
-from .widgets import AddBotWidget, RemoveBotWidget, EntranceWidget, RegistrationWidget, MainProgrammWidget, InstructionWidget
+from .bot.Bot import Bot
+from .widgets import (
+    AddBotWidget, RemoveBotWidget, EntranceWidget,
+    RegistrationWidget, MainProgrammWidget, InstructionWidget,
+    ManagementBotWidget, StartBotWidget
+)
+
+
+def try_except(func):
+    def new_func(self):
+        try:
+            func(self)
+        except Exception as e:
+            print(e)
+    return new_func
+
 
 class Window(Qt.QMainWindow):
     def __init__(self):
@@ -50,15 +67,12 @@ class Window(Qt.QMainWindow):
         self.active_window = MainProgrammWidget()
         self.setCentralWidget(self.active_window)
 
-        self.active_window.start_bot.clicked.connect(self.mp_start_bot)
+        self.active_window.start_bot.clicked.connect(self.setStartBotWidget)
         self.active_window.add_bot_button.clicked.connect(self.setAddBotWidget)
         self.active_window.remove_bot_button.clicked.connect(self.setRemoveBotWidget)
         self.active_window.help_button.clicked.connect(self.setInstructionWidget)
         self.active_window.unlogin_button.clicked.connect(self.setEntranceWidget)
 
-    def mp_start_bot(self):
-        pass
-    
     def setInstructionWidget(self):
         self.active_window = InstructionWidget()
         self.setCentralWidget(self.active_window)
@@ -69,7 +83,6 @@ class Window(Qt.QMainWindow):
         self.active_window = AddBotWidget()
         self.setCentralWidget(self.active_window)
 
-        self.active_window.select_path_button.clicked.connect(self.active_window.select_path)
         self.active_window.add_bot_button.clicked.connect(self.abw_add_bot)
         self.active_window.cancel_button.clicked.connect(self.setMainProgrammWidget)
 
@@ -104,8 +117,8 @@ class Window(Qt.QMainWindow):
         for bot in self.bots:
             try:
                 bot = self.cursor.execute(f"SELECT * FROM bots WHERE ID = {bot}").fetchone()
-                id_bot, name_bot, path, token = bot
-                self.active_window.all_bots_list.addItem(name_bot + '::' + path + '::' + token)
+                id_bot, name_bot, token = bot
+                self.active_window.all_bots_list.addItem(name_bot + '::' + token)
             except:
                 pass
 
@@ -113,7 +126,7 @@ class Window(Qt.QMainWindow):
         self.active_window.cancel_button.clicked.connect(self.setMainProgrammWidget)
 
     def rbw_remove_bot(self):
-        name_bot, path, token = self.active_window.remove_bot()
+        name_bot, token = self.active_window.remove_bot()
 
         id_remove_bot = self.cursor.execute(f"SELECT ID FROM bots WHERE name_bot = '{name_bot}'").fetchone()[0]
         self.cursor.execute(f"DELETE FROM bots WHERE ID = {id_remove_bot}")
@@ -124,3 +137,84 @@ class Window(Qt.QMainWindow):
         self.connection.commit()
 
         self.setMainProgrammWidget()
+    
+    def setStartBotWidget(self):
+        self.active_window = StartBotWidget()
+        self.setCentralWidget(self.active_window)
+
+        self.group = self.cursor.execute(f"SELECT group_bots FROM users WHERE login = '{self.active_user}'").fetchone()[0]
+        bots = self.cursor.execute(f"SELECT bots FROM groups WHERE group_id = {self.group}").fetchone()[0]
+        self.bots = bots.split(';')
+
+        for bot in self.bots:
+            try:
+                bot = self.cursor.execute(f"SELECT * FROM bots WHERE ID = {bot}").fetchone()
+                id_bot, name_bot, token = bot
+                self.active_window.bots.addItem(name_bot + '::' + token)
+            except:
+                pass
+        
+        self.active_window.start_bot_button.clicked.connect(self.setManagementBotWidget)
+        self.active_window.exit_button.clicked.connect(self.setMainProgrammWidget)
+    
+    def setManagementBotWidget(self):
+        name, token = self.active_window.bots.currentText().split('::')
+
+        self.active_window = ManagementBotWidget()
+        self.setCentralWidget(self.active_window)
+
+        self.active_window.top_name_line.setText(name)
+        self.active_window.middle_token_line.setText(token)
+
+        self.active_bot = Bot(token)
+        self.mbw_start_bot()
+        time.sleep(2)
+
+        self.active_window.nick_line.setText(self.active_bot.get_name())
+        self.mbw_update_count_guilds()
+
+        for cog in os.listdir('content/bot/cogs'):
+            if cog.endswith('.py'):
+                self.active_window.on_cogs.addItem(cog[:-3])
+
+        self.active_window.update_status.clicked.connect(self.mbw_update_status)
+        self.active_window.update_user_status.clicked.connect(self.mbw_update_activity)
+        self.active_window.update_count_guilds.clicked.connect(self.mbw_update_count_guilds)
+
+        self.active_window.connect.clicked.connect(self.mbw_load_cog)
+        self.active_window.disconnect.clicked.connect(self.mbw_unload_cog)
+
+        self.active_window.exit_button.clicked.connect(self.setMainProgrammWidget)
+    
+    def mbw_start_bot(self):
+        my_thread = threading.Thread(target=self.active_bot.start_bot)
+        my_thread.start()
+    
+    def mbw_update_activity(self):
+        item = self.active_window.user_status_line.text()
+        self.active_bot.activity_update(item)
+    
+    def mbw_update_status(self):
+        item = self.active_window.select_status.currentText()
+        self.active_bot.status_update(item)
+    
+    def mbw_update_count_guilds(self):
+        item = len(self.active_bot.get_all_guilds())
+        self.active_window.count_guilds_line.setText(str(item))
+    
+    @try_except
+    def mbw_load_cog(self):
+        cog = self.active_window.off_cogs.currentText()
+        #for item in self.active_window.off_cogs.ite
+        self.active_window.off_cogs.removeItem(cog)
+        self.active_window.on_cogs.addItem(cog)
+
+        self.active_bot.load_cog(cog)
+
+    @try_except
+    def mbw_unload_cog(self):
+        cog = self.active_window.on_cogs.currentText()
+        self.active_window.on_cogs.removeItem(cog)
+        self.active_window.off_cogs.addItem(cog)
+
+        self.active_bot.unload_cog(cog)

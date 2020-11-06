@@ -11,23 +11,14 @@ class AddBotWidget(AddBot):
         self.connection = sqlite3.connect('content\data.sqlite')
         self.cursor = self.connection.cursor()
     
-    def select_path(self):
-        path = QtWidgets.QFileDialog.getExistingDirectory(self, "Выбрать папку")
-
-        self.path_line.setText(path)
-    
     def add_bot(self):
         name_bot = self.name_bot_line.text()
         token = self.token_line.text()
-        path = self.path_line.text()
 
         if token == '' or token.isspace() or name_bot == '' or name_bot.isspace():
             self.show_error('Поля токена и названия бота должны быть заполнены')
             return False
-        
-        if path == '' or path.isspace():
-            path = 'None'
-
+    
         bots = self.cursor.execute("SELECT name_bot FROM bots").fetchall()
         if (name_bot,) in bots:
             self.show_error('Бот с таким названием уже есть')
@@ -39,7 +30,7 @@ class AddBotWidget(AddBot):
         except:
             last_id = 1
 
-        self.cursor.execute("INSERT INTO bots VALUES(?, ?, ?, ?)", (last_id, name_bot, path, token))
+        self.cursor.execute("INSERT INTO bots VALUES(?, ?, ?)", (last_id, name_bot, token))
         self.connection.commit()
 
         return last_id
