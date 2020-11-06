@@ -31,8 +31,13 @@ class Bot:
     def get_all_guilds(self):
         return self.client.guilds
     
-    def get_members(self, guild):
-        return guild.members 
+    def get_members(self, guild_id):
+        #guilds = dict()
+        #for guild in self.client.guilds:
+        #    guilds[str(guild.id)] = guild
+
+        #select_guild = guilds[guild_id] 
+        return guild.members
     
     def get_roles(self, guild):
         return guild.roles
@@ -56,5 +61,5 @@ class Bot:
 
         asyncio.ensure_future(self.client.change_presence(status=self.status, activity=self.activity))
 
-    def start_bot(self):
+    def on_bot(self):
         self.client.run(self.token)
