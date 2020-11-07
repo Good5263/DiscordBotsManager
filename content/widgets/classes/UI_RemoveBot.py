@@ -23,6 +23,7 @@ class RemoveBot(QtWidgets.QWidget):  # Виджет удаления бота и
         self.name_bot_line = QtWidgets.QLineEdit(self)
         self.name_bot_line.setGeometry(QtCore.QRect(320, 45, 290, 30))
         self.name_bot_line.setMinimumSize(QtCore.QSize(400, 30))
+        self.name_bot_line.setReadOnly(True)
 
         self.remove_bot_button = QtWidgets.QPushButton(self)
         self.remove_bot_button.setGeometry(QtCore.QRect(530, 90, 200, 45))

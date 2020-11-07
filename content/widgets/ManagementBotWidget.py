@@ -13,12 +13,6 @@ class ManagementBotWidget(ManagementBot):
         self.top_show_or_hide.clicked.connect(self.top_soh_toggle)
         self.middle_show_or_hide.clicked.connect(self.middle_soh_toggle)
         self.show_or_hide.clicked.connect(self.hide_all)
-        self.select_folder.clicked.connect(self.select_path)
-    
-    def select_path(self):
-        path = QtWidgets.QFileDialog.getExistingDirectory(self, "Выбрать папку")
-
-        self.folder_line.setText(path)
 
     def hide_all(self):
         self.hide_count = (self.hide_count + 1) % 2

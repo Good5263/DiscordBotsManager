@@ -32,11 +32,6 @@ class Bot:
         return self.client.guilds
     
     def get_members(self, guild_id):
-        #guilds = dict()
-        #for guild in self.client.guilds:
-        #    guilds[str(guild.id)] = guild
-
-        #select_guild = guilds[guild_id] 
         return guild.members
     
     def get_roles(self, guild):

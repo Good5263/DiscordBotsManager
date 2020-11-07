@@ -180,31 +180,11 @@ class Window(Qt.QMainWindow):
         self.active_window.update_status.clicked.connect(self.mbw_update_status)
         self.active_window.update_user_status.clicked.connect(self.mbw_update_activity)
         self.active_window.update_count_guilds.clicked.connect(self.mbw_update_guilds)
-        self.active_window.get_info.clicked.connect(self.mbw_get_info)
 
         self.active_window.connect.clicked.connect(self.mbw_load_cog)
         self.active_window.disconnect.clicked.connect(self.mbw_unload_cog)
 
         self.active_window.exit_button.clicked.connect(self.setMainProgrammWidget)
-    
-    def mbw_get_info(self):
-        form = self.active_window.select_format.currentText()
-        if form == 'txt' or form == 'csv':
-            type_data = self.active_window.select_type_data.currentText()
-            if type_data == 'Участники':
-                pass
-            elif type_data == 'Роли':
-                pass
-            elif type_data == 'Каналы':
-                pass
-        elif form == 'sqlite':
-            type_data = self.active_window.select_type_data.currentText()
-            if type_data == 'Участники':
-                pass
-            elif type_data == 'Роли':
-                pass
-            elif type_data == 'Каналы':
-                pass
     
     def mbw_start_bot(self):
         my_thread = threading.Thread(target=self.active_bot.on_bot)
@@ -224,15 +204,16 @@ class Window(Qt.QMainWindow):
     
     def mbw_update_guilds(self):
         guilds = self.active_bot.get_all_guilds()
-        for guild in guilds:
-            self.active_window.select_guild.addItem(f'{guild.id}')
-
         self.active_window.count_guilds_line.setText(str(len(guilds)))
     
     @try_except
     def mbw_load_cog(self):
         cog = self.active_window.off_cogs.currentText()
         cog_index = self.active_window.off_cogs.currentIndex()
+
+        if cog == '':
+            return
+
         self.active_window.off_cogs.removeItem(cog_index)
         self.active_window.on_cogs.addItem(cog)
         
@@ -242,6 +223,10 @@ class Window(Qt.QMainWindow):
     def mbw_unload_cog(self):
         cog = self.active_window.on_cogs.currentText()
         cog_index = self.active_window.on_cogs.currentIndex()
+
+        if cog == '':
+            return
+
         self.active_window.on_cogs.removeItem(cog_index)
         self.active_window.off_cogs.addItem(cog)
         
