@@ -159,7 +159,7 @@ class Window(Qt.QMainWindow):
     
     def setManagementBotWidget(self):
         name, token = self.active_window.bots.currentText().split('::')
-
+        
         self.active_window = ManagementBotWidget()
         self.setCentralWidget(self.active_window)
 
@@ -167,11 +167,12 @@ class Window(Qt.QMainWindow):
         self.active_window.middle_token_line.setText(token)
 
         self.active_bot = Bot(token)
-        self.mbw_start_bot()
+        bot_thread = threading.Thread(target=self.active_bot.on_bot)
+        bot_thread.start()
         time.sleep(2)
 
-        self.active_window.nick_line.setText(self.active_bot.get_name())
-        self.mbw_update_guilds()
+        self.active_window.nick_line.setText(str(self.active_bot.client.user))
+        self.mbw_update_count_guilds()
 
         for cog in os.listdir('content/bot/cogs'):
             if cog.endswith('.py'):
@@ -179,16 +180,12 @@ class Window(Qt.QMainWindow):
 
         self.active_window.update_status.clicked.connect(self.mbw_update_status)
         self.active_window.update_user_status.clicked.connect(self.mbw_update_activity)
-        self.active_window.update_count_guilds.clicked.connect(self.mbw_update_guilds)
+        self.active_window.update_count_guilds.clicked.connect(self.mbw_update_count_guilds)
 
         self.active_window.connect.clicked.connect(self.mbw_load_cog)
         self.active_window.disconnect.clicked.connect(self.mbw_unload_cog)
 
         self.active_window.exit_button.clicked.connect(self.setMainProgrammWidget)
-    
-    def mbw_start_bot(self):
-        my_thread = threading.Thread(target=self.active_bot.on_bot)
-        my_thread.start()
     
     def mbw_update_activity(self):
         item = self.active_window.user_status_line.text()
@@ -199,12 +196,8 @@ class Window(Qt.QMainWindow):
         self.active_bot.status_update(item)
     
     def mbw_update_count_guilds(self):
-        item = len(self.active_bot.get_all_guilds())
-        self.active_window.count_guilds_line.setText(str(item))
-    
-    def mbw_update_guilds(self):
-        guilds = self.active_bot.get_all_guilds()
-        self.active_window.count_guilds_line.setText(str(len(guilds)))
+        item = str(len(self.active_bot.client.guilds))
+        self.active_window.count_guilds_line.setText(item)
     
     @try_except
     def mbw_load_cog(self):

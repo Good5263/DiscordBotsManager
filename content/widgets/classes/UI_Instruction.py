@@ -1,12 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Instruction(QtWidgets.QWidget):  # Виджет инструкции
+class Instruction(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent=parent)
 
-        self.create_elements()  # Добавление виджетов
-        self.customize_elements()  # Добавление шрифта, текста, картинок в виджеты
+        self.create_elements()
+        self.customize_elements()
 
     def create_elements(self):
         self.title = QtWidgets.QLabel(self)
@@ -14,6 +14,7 @@ class Instruction(QtWidgets.QWidget):  # Виджет инструкции
 
         self.text = QtWidgets.QPlainTextEdit(self)
         self.text.setGeometry(QtCore.QRect(15, 60, 771, 481))
+        self.text.setReadOnly(True)
 
         self.exit = QtWidgets.QPushButton(self)
         self.exit.setGeometry(QtCore.QRect(15, 550, 771, 41))

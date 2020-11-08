@@ -3,13 +3,13 @@ from PyQt5 import Qt
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class AddBot(QtWidgets.QWidget):  # Виджет добавления бота в список
+class AddBot(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent=parent)
 
-        self.create_elements()  # Добавление виджетов
-        self.customize_elements()  # Добавление шрифта, текста, картинок в виджеты
-        self.add_layouts()  # Добавление виджетов в layout
+        self.create_elements()
+        self.customize_elements()
+        self.add_layouts()
     
     def create_elements(self):
         self.verticalLayoutWidget = QtWidgets.QWidget(self)

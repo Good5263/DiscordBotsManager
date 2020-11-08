@@ -13,5 +13,4 @@ for table in tables:
     cursor.execute(table)
 
 connection.commit()
-
 connection.close()

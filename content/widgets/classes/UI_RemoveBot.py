@@ -1,12 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class RemoveBot(QtWidgets.QWidget):  # Виджет удаления бота из списка
+class RemoveBot(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent=parent)
 
-        self.create_elements()  # Добавление виджетов
-        self.customize_elements()  # Добавление шрифта, текста, картинок в виджеты
+        self.create_elements()
+        self.customize_elements()
     
     def create_elements(self):
         self.all_bots_label = QtWidgets.QLabel(self)
@@ -40,8 +40,8 @@ class RemoveBot(QtWidgets.QWidget):  # Виджет удаления бота и
         self.name_bot_label.setStyleSheet("font: 10pt \"Noto Sans Arabic UI\";")
         self.cancel_button.setStyleSheet("font: 10pt \"Noto Sans Arabic UI\";")
 
-        self.remove_bot_button.setText("Удалить бота")
         self.all_bots_label.setText("Все боты:")
         self.name_bot_label.setText("Удаляемый бот:")
+        self.remove_bot_button.setText("Удалить бота")
         self.cancel_button.setText("В меню")
         

@@ -1,13 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class MainProgramm(QtWidgets.QWidget):  # Виджет основного меню
+class MainProgramm(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent=parent)
 
-        self.create_elements()  # Добавление виджетов
-        self.customize_elements()  # Добавление шрифта, текста, картинок в виджеты
-        self.add_layouts()  # Добавление виджетов в layout
+        self.create_elements()
+        self.customize_elements()
+        self.add_layouts()
     
     def create_elements(self):
         self.verticalLayoutWidget = QtWidgets.QWidget(self)
@@ -35,7 +35,7 @@ class MainProgramm(QtWidgets.QWidget):  # Виджет основного мен
     def add_layouts(self):
         self.main_layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.main_layout.setContentsMargins(0, 0, 0, 0)
-
+        
         self.main_layout.addWidget(self.start_bot)
         self.main_layout.addWidget(self.add_bot_button)
         self.main_layout.addWidget(self.remove_bot_button)

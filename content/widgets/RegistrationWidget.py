@@ -53,7 +53,7 @@ class RegistrationWidget(Registration):
             self.connection.commit()
 
             return login
-        
+            
         return False
 
     def show_error(self, error):

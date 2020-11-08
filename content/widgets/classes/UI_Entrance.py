@@ -1,13 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Entrance(QtWidgets.QWidget):  # Виджет входа в аккаунт
+class Entrance(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent=parent)
 
-        self.create_elements()  # Добавление виджетов
-        self.customize_elements()  # Добавление шрифта, текста, картинок в виджеты
-        self.add_layouts()  # Добавление виджетов в layout
+        self.create_elements()
+        self.customize_elements()
+        self.add_layouts()
     
     def create_elements(self):
         self.gridLayoutWidget = QtWidgets.QWidget(self)

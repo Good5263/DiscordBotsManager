@@ -16,7 +16,7 @@ class EntranceWidget(Entrance):
 
         login = self.login_input.text()
         password = self.password_input.text()
-
+        
         users = self.cursor.execute("SELECT * FROM users").fetchall()
         users = [[user[0], user[1]] for user in users]
 

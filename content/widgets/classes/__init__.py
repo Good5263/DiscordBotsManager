@@ -8,4 +8,3 @@ from .UI_ManagementBot import ManagementBot
 from .UI_StartBot import StartBot
 
 from .Hash import Hash
-from .Chiper import Chiper
