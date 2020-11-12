@@ -27,5 +27,5 @@ class Instruction(QtWidgets.QWidget):
         self.title.setText("Инструкция")
         self.exit.setText("В главное меню")
 
-        text = open('content/instruction.txt', mode='r', encoding="utf8").read()
+        text = open('content/data_files/instruction.txt', mode='r', encoding="utf8").read()
         self.text.setPlainText(text)

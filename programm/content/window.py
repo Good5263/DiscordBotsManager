@@ -2,6 +2,7 @@ import os
 import time
 import sqlite3
 import threading
+from contextlib import redirect_stdout
 
 from PyQt5 import Qt, QtCore
 
@@ -30,7 +31,7 @@ class Window(Qt.QMainWindow):
         self.setWindowTitle('Discord Bots Manager')
         self.setWindowIcon(Qt.QIcon('content\images\icon.png'))
 
-        self.connection = sqlite3.connect('content\data.sqlite')
+        self.connection = sqlite3.connect('content\data_files\data.sqlite')
         self.cursor = self.connection.cursor()
 
         self.setEntranceWidget()
@@ -125,6 +126,7 @@ class Window(Qt.QMainWindow):
         self.active_window.remove_bot_button.clicked.connect(self.rbw_remove_bot)
         self.active_window.cancel_button.clicked.connect(self.setMainProgrammWidget)
 
+    @try_except
     def rbw_remove_bot(self):
         name_bot, token = self.active_window.remove_bot()
 
@@ -167,11 +169,11 @@ class Window(Qt.QMainWindow):
         self.active_window.middle_token_line.setText(token)
 
         self.active_bot = Bot(token)
-        bot_thread = threading.Thread(target=self.active_bot.on_bot)
+        bot_thread = threading.Thread(target=self.mbw_start_bot)
         bot_thread.start()
         time.sleep(2)
 
-        self.active_window.nick_line.setText(str(self.active_bot.client.user))
+        self.mbw_update_nickname()
         self.mbw_update_count_guilds()
 
         for cog in os.listdir('content/bot/cogs'):
@@ -181,23 +183,35 @@ class Window(Qt.QMainWindow):
         self.active_window.update_status.clicked.connect(self.mbw_update_status)
         self.active_window.update_user_status.clicked.connect(self.mbw_update_activity)
         self.active_window.update_count_guilds.clicked.connect(self.mbw_update_count_guilds)
+        self.active_window.nick_update_button.clicked.connect(self.mbw_update_nickname)
 
         self.active_window.connect.clicked.connect(self.mbw_load_cog)
         self.active_window.disconnect.clicked.connect(self.mbw_unload_cog)
 
         self.active_window.exit_button.clicked.connect(self.setMainProgrammWidget)
     
+    def mbw_start_bot(self):
+        with redirect_stdout(None):
+            self.active_bot.on_bot()
+    
+    @try_except
     def mbw_update_activity(self):
         item = self.active_window.user_status_line.text()
         self.active_bot.activity_update(item)
     
+    @try_except
     def mbw_update_status(self):
         item = self.active_window.select_status.currentText()
         self.active_bot.status_update(item)
     
+    @try_except
     def mbw_update_count_guilds(self):
         item = str(len(self.active_bot.client.guilds))
         self.active_window.count_guilds_line.setText(item)
+    
+    @try_except
+    def mbw_update_nickname(self):
+        self.active_window.nick_line.setText(str(self.active_bot.client.user))
     
     @try_except
     def mbw_load_cog(self):

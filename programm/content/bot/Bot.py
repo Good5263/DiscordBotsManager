@@ -1,5 +1,6 @@
 import os
 import asyncio
+from contextlib import redirect_stdout
 
 import discord
 from discord.ext import commands
@@ -43,4 +44,7 @@ class Bot:
         asyncio.ensure_future(self.client.change_presence(status=self.status, activity=self.activity))
 
     def on_bot(self):
-        self.client.run(self.token)
+        try:
+            self.client.run(self.token)
+        except:
+            pass

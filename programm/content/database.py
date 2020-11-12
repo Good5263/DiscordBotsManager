@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect('content\data.sqlite')
+connection = sqlite3.connect('content\data_files\data.sqlite')
 cursor = connection.cursor()
 
 tables =[

@@ -19,6 +19,7 @@ class ManagementBot(QtWidgets.QWidget):
         self.nick_label = QtWidgets.QLabel(self.horizontal_layout_widget)
         self.nick_line = QtWidgets.QLineEdit(self.horizontal_layout_widget)
         self.nick_line.setReadOnly(True)
+        self.nick_update_button = QtWidgets.QPushButton(self.horizontal_layout_widget)
 
         self.horizontal_layout_widget2 = QtWidgets.QWidget(self.statistic_box)
         self.horizontal_layout_widget2.setGeometry(QtCore.QRect(20, 70, 361, 31))
@@ -86,6 +87,7 @@ class ManagementBot(QtWidgets.QWidget):
     def customize_elements(self):
         self.statistic_box.setStyleSheet("font: 10pt \"Arial\";")
         self.nick_label.setStyleSheet("font: 10pt \"Arial\";")
+        self.nick_update_button.setStyleSheet("font: 8pt \"Arial\";")
         self.nick_line.setStyleSheet("font: 8pt \"Arial\";")
         self.status_label.setStyleSheet("font: 10pt \"Arial\";")
         self.select_status.setStyleSheet("font: 9pt \"Arial\";")
@@ -112,6 +114,7 @@ class ManagementBot(QtWidgets.QWidget):
 
         self.statistic_box.setTitle("СТАТИСТИКА")
         self.nick_label.setText("Никнейм бота:")
+        self.nick_update_button.setText('Обновить')
         self.status_label.setText("Статус бота:")
         self.update_status.setText("Обновить")
         self.user_status_label.setText("Пользовательский статус бота:")
@@ -151,6 +154,7 @@ class ManagementBot(QtWidgets.QWidget):
 
         self.nick_layout.addWidget(self.nick_label)
         self.nick_layout.addWidget(self.nick_line)
+        self.nick_layout.addWidget(self.nick_update_button)
         self.status_layout.addWidget(self.status_label)
         self.status_layout.addWidget(self.select_status)
         self.status_layout.addWidget(self.update_status)

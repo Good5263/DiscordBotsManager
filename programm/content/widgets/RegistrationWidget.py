@@ -9,7 +9,7 @@ class RegistrationWidget(Registration):
     def __init__(self):
         super().__init__()
 
-        self.connection = sqlite3.connect('content\data.sqlite')
+        self.connection = sqlite3.connect('content\data_files\data.sqlite')
         self.cursor = self.connection.cursor()
 
         self.symbols = list('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890_')

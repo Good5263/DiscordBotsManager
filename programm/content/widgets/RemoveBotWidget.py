@@ -7,7 +7,7 @@ class RemoveBotWidget(RemoveBot):
     def __init__(self):
         super().__init__()
 
-        self.connection = sqlite3.connect('content\data.sqlite')
+        self.connection = sqlite3.connect('content\data_files\data.sqlite')
         self.cursor = self.connection.cursor()
 
         self.all_bots_list.itemSelectionChanged.connect(self.select_bot)

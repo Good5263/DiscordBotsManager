@@ -8,7 +8,7 @@ class AddBotWidget(AddBot):
     def __init__(self):
         super().__init__()
 
-        self.connection = sqlite3.connect('content\data.sqlite')
+        self.connection = sqlite3.connect('content\data_files\data.sqlite')
         self.cursor = self.connection.cursor()
     
     def add_bot(self):
