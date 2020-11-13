@@ -29,9 +29,9 @@ class Window(Qt.QMainWindow):
 
         self.setFixedSize(800, 600)
         self.setWindowTitle('Discord Bots Manager')
-        self.setWindowIcon(Qt.QIcon('content\images\icon.png'))
+        self.setWindowIcon(Qt.QIcon('programm\content\images\icon.png'))
 
-        self.connection = sqlite3.connect('content\data_files\data.sqlite')
+        self.connection = sqlite3.connect('programm\content\data_files\data.sqlite')
         self.cursor = self.connection.cursor()
 
         self.setEntranceWidget()
@@ -169,14 +169,14 @@ class Window(Qt.QMainWindow):
         self.active_window.middle_token_line.setText(token)
 
         self.active_bot = Bot(token)
-        bot_thread = threading.Thread(target=self.mbw_start_bot)
-        bot_thread.start()
+        self.bot_thread = threading.Thread(target=self.mbw_start_bot)
+        self.bot_thread.start()
         time.sleep(2)
 
         self.mbw_update_nickname()
         self.mbw_update_count_guilds()
 
-        for cog in os.listdir('content/bot/cogs'):
+        for cog in os.listdir('programm/content/bot/cogs'):
             if cog.endswith('.py'):
                 self.active_window.on_cogs.addItem(cog[:-3])
 
@@ -191,7 +191,7 @@ class Window(Qt.QMainWindow):
         self.active_window.exit_button.clicked.connect(self.setMainProgrammWidget)
     
     def mbw_start_bot(self):
-        with redirect_stdout(None):
+        with redirect_stdout("programm\content\data_files\outlog.txt"):
             self.active_bot.on_bot()
     
     @try_except

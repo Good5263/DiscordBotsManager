@@ -1,14 +1,14 @@
 import sqlite3
 
 from PyQt5 import QtWidgets, QtCore
-from .classes import AddBot
+from .ui_classes import AddBot
 
 
 class AddBotWidget(AddBot):
     def __init__(self):
         super().__init__()
 
-        self.connection = sqlite3.connect('content\data_files\data.sqlite')
+        self.connection = sqlite3.connect('programm\content\data_files\data.sqlite')
         self.cursor = self.connection.cursor()
     
     def add_bot(self):

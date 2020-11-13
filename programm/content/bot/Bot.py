@@ -15,7 +15,7 @@ class Bot:
         self.activity = discord.Game(name="")
         self.status = discord.Status.online
 
-        for file in os.listdir('./content/bot/cogs'):
+        for file in os.listdir('programm/content/bot/cogs'):
             if file.endswith('.py'):
                 try:
                     self.client.load_extension(f'content.bot.cogs.{file[:-3]}')

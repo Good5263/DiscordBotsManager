@@ -2,14 +2,16 @@ import re
 import sqlite3
 
 from PyQt5 import QtWidgets, QtCore
-from .classes import Registration, Hash
+
+from .ui_classes import Registration
+from .utils import Hash
 
 
 class RegistrationWidget(Registration):
     def __init__(self):
         super().__init__()
 
-        self.connection = sqlite3.connect('content\data_files\data.sqlite')
+        self.connection = sqlite3.connect('programm\content\data_files\data.sqlite')
         self.cursor = self.connection.cursor()
 
         self.symbols = list('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890_')

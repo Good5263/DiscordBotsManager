@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, Qt, QtCore
-from .classes import ManagementBot
+from .ui_classes import ManagementBot
 
 class ManagementBotWidget(ManagementBot):
     def __init__(self):
