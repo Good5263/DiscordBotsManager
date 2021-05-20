@@ -47,7 +47,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
       </property>
       <property name="text">
        <string>Введите логин:</string>
@@ -64,6 +64,9 @@
         <width>0</width>
         <height>40</height>
        </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
       </property>
      </widget>
     </item>
@@ -82,7 +85,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
       </property>
       <property name="text">
        <string>Введите пароль:</string>
@@ -99,6 +102,9 @@
         <width>0</width>
         <height>40</height>
        </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 63 6pt &quot;Yu Gothic UI Semibold&quot;;</string>
       </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
@@ -120,7 +126,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+       <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
       </property>
       <property name="text">
        <string>Введите пароль еще раз:</string>
@@ -138,6 +144,9 @@
         <height>40</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">font: 63 6pt &quot;Yu Gothic UI Semibold&quot;;</string>
+      </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
       </property>
@@ -154,7 +163,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+         <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
         </property>
         <property name="text">
          <string>У меня уже есть аккаунт</string>
@@ -170,7 +179,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+         <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
         </property>
         <property name="text">
          <string>Зарегистрироваться</string>
@@ -195,6 +204,25 @@
    </property>
    <property name="text">
     <string>Регистрация</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="error_line">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>17</x>
+     <y>550</y>
+     <width>106</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 63 12pt &quot;Yu Gothic UI Semibold&quot;;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

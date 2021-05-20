@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'ui/source/sign_in.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.2
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_SignIn(object):
+    def setupUi(self, SignIn):
+        SignIn.setObjectName("SignIn")
+        SignIn.resize(800, 600)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(SignIn.sizePolicy().hasHeightForWidth())
+        SignIn.setSizePolicy(sizePolicy)
+        SignIn.setStyleSheet("")
+        self.verticalLayoutWidget = QtWidgets.QWidget(SignIn)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(100, 190, 601, 281))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.form_layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.form_layout.setContentsMargins(0, 0, 0, 0)
+        self.form_layout.setSpacing(4)
+        self.form_layout.setObjectName("form_layout")
+        self.enter_login_label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.enter_login_label.setMinimumSize(QtCore.QSize(0, 50))
+        self.enter_login_label.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.enter_login_label.setStyleSheet("font: 63 11pt \"Yu Gothic UI Semibold\";")
+        self.enter_login_label.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft)
+        self.enter_login_label.setObjectName("enter_login_label")
+        self.form_layout.addWidget(self.enter_login_label)
+        self.login = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.login.setMinimumSize(QtCore.QSize(0, 40))
+        self.login.setStyleSheet("font: 63 11pt \"Yu Gothic UI Semibold\";")
+        self.login.setObjectName("login")
+        self.form_layout.addWidget(self.login)
+        self.enter_password_label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.enter_password_label.setMinimumSize(QtCore.QSize(0, 50))
+        self.enter_password_label.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.enter_password_label.setStyleSheet("font: 63 11pt \"Yu Gothic UI Semibold\";")
+        self.enter_password_label.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft)
+        self.enter_password_label.setObjectName("enter_password_label")
+        self.form_layout.addWidget(self.enter_password_label)
+        self.password = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.password.setMinimumSize(QtCore.QSize(0, 40))
+        self.password.setStyleSheet("font: 63 6pt \"Yu Gothic UI Semibold\";")
+        self.password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.password.setObjectName("password")
+        self.form_layout.addWidget(self.password)
+        self.buttons_layout = QtWidgets.QHBoxLayout()
+        self.buttons_layout.setObjectName("buttons_layout")
+        self.i_dont_have_accont = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.i_dont_have_accont.setMinimumSize(QtCore.QSize(0, 45))
+        self.i_dont_have_accont.setStyleSheet("font: 63 10pt \"Yu Gothic UI Semibold\";")
+        self.i_dont_have_accont.setObjectName("i_dont_have_accont")
+        self.buttons_layout.addWidget(self.i_dont_have_accont)
+        self.sign_in_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.sign_in_button.setMinimumSize(QtCore.QSize(0, 45))
+        self.sign_in_button.setStyleSheet("font: 63 10pt \"Yu Gothic UI Semibold\";")
+        self.sign_in_button.setObjectName("sign_in_button")
+        self.buttons_layout.addWidget(self.sign_in_button)
+        self.form_layout.addLayout(self.buttons_layout)
+        self.greeting = QtWidgets.QLabel(SignIn)
+        self.greeting.setGeometry(QtCore.QRect(0, 0, 801, 106))
+        self.greeting.setStyleSheet("font: 63 19pt \"Yu Gothic UI Semibold\";")
+        self.greeting.setAlignment(QtCore.Qt.AlignCenter)
+        self.greeting.setObjectName("greeting")
+        self.sign_in_label = QtWidgets.QLabel(SignIn)
+        self.sign_in_label.setGeometry(QtCore.QRect(250, 135, 281, 61))
+        self.sign_in_label.setStyleSheet("font: 63 18pt \"Yu Gothic UI Semibold\";")
+        self.sign_in_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.sign_in_label.setObjectName("sign_in_label")
+        self.error_line = QtWidgets.QLineEdit(SignIn)
+        self.error_line.setEnabled(False)
+        self.error_line.setGeometry(QtCore.QRect(15, 550, 106, 36))
+        self.error_line.setStyleSheet("font: 63 10pt \"Yu Gothic UI Semibold\";")
+        self.error_line.setAlignment(QtCore.Qt.AlignCenter)
+        self.error_line.setObjectName("error_line")
+
+        self.retranslateUi(SignIn)
+        QtCore.QMetaObject.connectSlotsByName(SignIn)
+
+    def retranslateUi(self, SignIn):
+        _translate = QtCore.QCoreApplication.translate
+        SignIn.setWindowTitle(_translate("SignIn", "Form"))
+        self.enter_login_label.setText(_translate("SignIn", "Введите логин:"))
+        self.enter_password_label.setText(_translate("SignIn", "Введите пароль:"))
+        self.i_dont_have_accont.setText(_translate("SignIn", "У меня нет аккаунта"))
+        self.sign_in_button.setText(_translate("SignIn", "Войти"))
+        self.greeting.setText(_translate("SignIn", "Добро пожаловать в DiscordBotsManager!"))
+        self.sign_in_label.setText(_translate("SignIn", "Вход"))
