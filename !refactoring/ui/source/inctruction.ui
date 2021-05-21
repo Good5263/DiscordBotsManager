@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Instruction</class>
+ <widget class="QWidget" name="Instruction">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="instruction_box">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>9</y>
+     <width>771</width>
+     <height>576</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
+   </property>
+   <property name="title">
+    <string>Инструкция</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>30</y>
+      <width>741</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="inctruction_layout">
+     <property name="spacing">
+      <number>3</number>
+     </property>
+     <item>
+      <widget class="QPlainTextEdit" name="inctruction"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exit_to_menu_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
+       </property>
+       <property name="text">
+        <string>В меню</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

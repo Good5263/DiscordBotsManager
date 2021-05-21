@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RemoveBot</class>
+ <widget class="QWidget" name="RemoveBot">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="list_bots_box">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>10</y>
+     <width>266</width>
+     <height>576</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 63 10pt &quot;Yu Gothic UI Semibold&quot;;</string>
+   </property>
+   <property name="title">
+    <string>Все боты</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <widget class="QListView" name="list_bots">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>25</y>
+      <width>246</width>
+      <height>541</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="remove_bot_box">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>9</y>
+     <width>486</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 63 10pt &quot;Yu Gothic UI Semibold&quot;;</string>
+   </property>
+   <property name="title">
+    <string>Удаляемый бот</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <widget class="QLineEdit" name="remove_bot_info">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>25</y>
+      <width>466</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>466</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="buttons_layout">
+     <property name="spacing">
+      <number>3</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="exit_to_menu_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
+       </property>
+       <property name="text">
+        <string>В меню</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="remove_bot_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 63 11pt &quot;Yu Gothic UI Semibold&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Удалить бота</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

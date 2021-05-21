@@ -3,7 +3,9 @@ import sqlite3
 from PyQt5 import Qt
 
 from widgets import (
-    SignUpWidget, SignInWidget
+    SignUpWidget, SignInWidget, MenuWidget,
+    AddBotWidget, RemoveBotWidget, StartBotWidget,
+    InstructionWidget
 )
 
 
@@ -36,6 +38,28 @@ class MainWindow(Qt.QMainWindow):
         self.active_window.sign_up_button.clicked.connect(self.registation_account)
         self.active_window.i_have_accont.clicked.connect(self.set_sign_in_window)
     
+    def set_menu_window(self):
+        self.active_window = MenuWidget()
+        self.setCentralWidget(self.active_window)
+
+        self.active_window.start_bot_button.clicked.connect(self.set_start_bot_window)
+        self.active_window.add_bot_button.clicked.connect(self.set_add_bot_window)
+        self.active_window.remove_bot_button.clicked.connect(self.set_remove_bot_window)
+        self.active_window.show_instruction_button.clicked.connect(self.set_show_instruction_window)
+        self.active_window.logout_button.clicked.connect(self.set_sign_in_window)
+
+    def set_start_bot_window(self):
+        pass
+
+    def set_add_bot_window(self):
+        pass
+
+    def set_remove_bot_window(self):
+        pass
+
+    def set_show_instruction_window(self):
+        pass
+    
     def registation_account(self):
         successfuly = self.active_window.validation_account()
 
@@ -47,3 +71,4 @@ class MainWindow(Qt.QMainWindow):
 
         if successfuly:
             self.user_login = login
+            self.set_menu_window()

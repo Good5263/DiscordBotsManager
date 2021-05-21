@@ -3,12 +3,12 @@ import sqlite3
 import hashlib
 
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QWidget
 
 from ui.converted import SignUpInterface
 
 
-class SignUpWidget(QMainWindow, SignUpInterface):
+class SignUpWidget(QWidget, SignUpInterface):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
