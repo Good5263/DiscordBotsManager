@@ -19,7 +19,7 @@ class Ui_RemoveBot(object):
         self.list_bots_box.setStyleSheet("font: 63 10pt \"Yu Gothic UI Semibold\";")
         self.list_bots_box.setAlignment(QtCore.Qt.AlignCenter)
         self.list_bots_box.setObjectName("list_bots_box")
-        self.list_bots = QtWidgets.QListView(self.list_bots_box)
+        self.list_bots = QtWidgets.QListWidget(self.list_bots_box)
         self.list_bots.setGeometry(QtCore.QRect(10, 25, 246, 541))
         self.list_bots.setObjectName("list_bots")
         self.remove_bot_box = QtWidgets.QGroupBox(RemoveBot)

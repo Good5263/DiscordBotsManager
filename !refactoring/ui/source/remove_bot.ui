@@ -31,7 +31,7 @@
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
-   <widget class="QListView" name="list_bots">
+   <widget class="QListWidget" name="list_bots">
     <property name="geometry">
      <rect>
       <x>10</x>

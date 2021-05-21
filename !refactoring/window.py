@@ -49,16 +49,28 @@ class MainWindow(Qt.QMainWindow):
         self.active_window.logout_button.clicked.connect(self.set_sign_in_window)
 
     def set_start_bot_window(self):
-        pass
+        self.active_window = StartBotWidget(self.user_login)
+        self.setCentralWidget(self.active_window)
+
+        self.active_window.exit_to_menu_button.clicked.connect(self.set_menu_window)
 
     def set_add_bot_window(self):
-        pass
+        self.active_window = AddBotWidget(self.user_login)
+        self.setCentralWidget(self.active_window)
+
+        self.active_window.exit_to_menu_button.clicked.connect(self.set_menu_window)
 
     def set_remove_bot_window(self):
-        pass
+        self.active_window = RemoveBotWidget(self.user_login)
+        self.setCentralWidget(self.active_window)
+
+        self.active_window.exit_to_menu_button.clicked.connect(self.set_menu_window)
 
     def set_show_instruction_window(self):
-        pass
+        self.active_window = InstructionWidget()
+        self.setCentralWidget(self.active_window)
+
+        self.active_window.exit_to_menu_button.clicked.connect(self.set_menu_window)
     
     def registation_account(self):
         successfuly = self.active_window.validation_account()
