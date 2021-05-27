@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>0</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -229,7 +229,10 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="error_line">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>295</x>
@@ -237,6 +240,12 @@
      <width>491</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 63 9pt &quot;Yu Gothic UI Semibold&quot;;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

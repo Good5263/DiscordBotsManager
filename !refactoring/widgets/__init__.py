@@ -5,3 +5,4 @@ from .add_bot import AddBotWidget
 from .remove_bot import RemoveBotWidget
 from .start_bot import StartBotWidget
 from .instruction import InstructionWidget
+from .bot_management import BotManagementWidget

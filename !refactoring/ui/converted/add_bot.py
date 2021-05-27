@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AddBot(object):
     def setupUi(self, AddBot):
         AddBot.setObjectName("AddBot")
-        AddBot.resize(800, 600)
+        AddBot.resize(800, 0)
         self.list_bots_box = QtWidgets.QGroupBox(AddBot)
         self.list_bots_box.setGeometry(QtCore.QRect(10, 5, 266, 576))
         self.list_bots_box.setStyleSheet("font: 63 10pt \"Yu Gothic UI Semibold\";")
@@ -84,6 +84,12 @@ class Ui_AddBot(object):
         self.add_bot_button.setObjectName("add_bot_button")
         self.buttons_layout.addWidget(self.add_bot_button)
         self.form_layout.addLayout(self.buttons_layout)
+        self.error_line = QtWidgets.QLineEdit(AddBot)
+        self.error_line.setEnabled(False)
+        self.error_line.setGeometry(QtCore.QRect(295, 255, 491, 31))
+        self.error_line.setStyleSheet("font: 63 9pt \"Yu Gothic UI Semibold\";")
+        self.error_line.setAlignment(QtCore.Qt.AlignCenter)
+        self.error_line.setObjectName("error_line")
 
         self.retranslateUi(AddBot)
         QtCore.QMetaObject.connectSlotsByName(AddBot)

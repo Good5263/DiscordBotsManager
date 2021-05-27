@@ -5,7 +5,7 @@ from PyQt5 import Qt
 from widgets import (
     SignUpWidget, SignInWidget, MenuWidget,
     AddBotWidget, RemoveBotWidget, StartBotWidget,
-    InstructionWidget
+    InstructionWidget, BotManagementWidget
 )
 
 
@@ -47,12 +47,19 @@ class MainWindow(Qt.QMainWindow):
         self.active_window.remove_bot_button.clicked.connect(self.set_remove_bot_window)
         self.active_window.show_instruction_button.clicked.connect(self.set_show_instruction_window)
         self.active_window.logout_button.clicked.connect(self.set_sign_in_window)
+    
+    def set_management_bot_widget(self, name, token):
+        self.active_window = BotManagementWidget(name, token)
+        self.setCentralWidget(self.active_window)
+
+        self.active_window.exit_to_menu_button.clicked.connect(self.set_menu_window)
 
     def set_start_bot_window(self):
         self.active_window = StartBotWidget(self.user_login)
         self.setCentralWidget(self.active_window)
 
         self.active_window.exit_to_menu_button.clicked.connect(self.set_menu_window)
+        self.active_window.start_bot_button.clicked.connect(self.start_bot)
 
     def set_add_bot_window(self):
         self.active_window = AddBotWidget(self.user_login)
@@ -84,3 +91,7 @@ class MainWindow(Qt.QMainWindow):
         if successfuly:
             self.user_login = login
             self.set_menu_window()
+    
+    def start_bot(self):
+        name, token = self.active_window.get_selected_bot()
+        self.set_management_bot_widget(name, token)

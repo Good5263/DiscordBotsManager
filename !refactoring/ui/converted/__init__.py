@@ -5,3 +5,4 @@ from .add_bot import Ui_AddBot as AddBotInterface
 from .remove_bot import Ui_RemoveBot as RemoveBotInterface
 from .start_bot import Ui_StartBot as StartBotInterface
 from .instruction import Ui_Instruction as InstructionInterface
+from .bot_management import Ui_BotManagement as BotManagementInterface

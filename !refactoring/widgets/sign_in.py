@@ -22,6 +22,10 @@ class SignInWidget(QWidget, SignInInterface):
 
         login = self.login.text()
         password = self.password.text()
+
+        if login.isspace() or password.isspace() or not login or not password:
+            self.show_error("Поля логина и пароля должны быть заполнены")
+            return (False, None)
         
         hashed_password = self.cursor.execute(f"SELECT hashed_password FROM users WHERE login = '{login}'").fetchone()[0]
 
