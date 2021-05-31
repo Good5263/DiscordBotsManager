@@ -4,52 +4,83 @@ import discord
 from discord.ext import commands
 
 
-class Reload(commands.Cog):
+class Reload(commands.Cog, name=os.path.basename(__file__)[:-3]):
     def __init__(self, client):
         self.client = client
+
 
     @commands.command()
     @commands.is_owner()
     async def reload(self, ctx):
-        try:
-            for file in os.listdir('./cogs'):
-                if file.endswith('.py'):
-                    self.client.unload_extension(f'cogs.{file[:-3]}')
-                    self.client.load_extension(f'cogs.{file[:-3]}')
-            print(f"Successfully updated {len(os.listdir('cogs'))} cogs!")
+        logs = []
+        cogs_count = 0
 
-            await ctx.message.add_reaction('✅')
-        except:
-            await ctx.message.add_reaction('❎')
+        for file in os.listdir("cogs"):
+            if file.endswith(".py"):
+                cogs_count += 1
+                try:
+                    self.client.unload_extension(f"cogs.{file[:-3]}")
+                    self.client.load_extension(f"cogs.{file[:-3]}")
+                    logs.append("\n".join(["```css", f"name: {file[:-3]}", "status: reloaded", "```"])) 
+                except Exception as e: 
+                    logs.append("\n".join(["```fix", f"name: {file[:-3]}", "status: error", f"reason: {e}", "```"]))
+        
+        logs.append(f"```\nresult: {len(self.client.cogs)}/{cogs_count} cogs was reloaded```")
+
+        await ctx.send(embed=discord.Embed(title="", description="\n".join(logs), colour=discord.Colour.from_rgb(47, 49, 54)))
+
 
     @commands.command()
     @commands.is_owner()
-    async def reload_cog(self, ctx, file):
+    async def load(self, ctx, filename):
         try:
-            self.client.unload_extension(f'cogs.{file}')
-            self.client.load_extension(f'cogs.{file}')
-            print(f"{file} was updated")
+            self.client.load_extension(f"cogs.{filename}")
+            result = "\n".join(["```css", f"name: {filename}", "status: loaded", "```"])
+        except Exception as e: 
+            result = "\n".join(["```fix", f"name: {filename}", "status: error", f"reason: {e}", "```"])
+        
+        await ctx.send(embed=discord.Embed(title="", description=result, colour=discord.Colour.from_rgb(47, 49, 54)))
 
-            await ctx.message.add_reaction('✅')
-        except:
-            await ctx.message.add_reaction('❎')
+
+    @commands.command()
+    @commands.is_owner()
+    async def unload(self, ctx, filename):
+        try:
+            self.client.unload_extension(f"cogs.{filename}")
+            result = "\n".join(["```css", f"name: {filename}", "status: unloaded", "```"])
+        except Exception as e: 
+            result = "\n".join(["```fix", f"name: {filename}", "status: error", f"reason: {e}", "```"])
+        
+        await ctx.send(embed=discord.Embed(title="", description=result, colour=discord.Colour.from_rgb(47, 49, 54)))
+        
+
+    @commands.command()
+    @commands.is_owner()
+    async def reload_cog(self, ctx, filename):
+        try:
+            self.client.unload_extension(f"cogs.{filename}")
+            self.client.load_extension(f"cogs.{filename}")
+            result = "\n".join(["```css", f"name: {filename}", "status: reloaded", "```"])
+        except Exception as e: 
+            result = "\n".join(["```fix", f"name: {filename}", "status: error", f"reason: {e}", "```"])
+        
+        await ctx.send(embed=discord.Embed(title="", description=result, colour=discord.Colour.from_rgb(47, 49, 54)))
+    
 
     @commands.command()
     @commands.is_owner()
     async def cogs(self, ctx):
-        try:
-            desc = '\n'.join([file[:-3] for file in os.listdir('./cogs') if file.endswith('.py')])
-            colour = discord.Colour.from_rgb(56, 24, 220)
-
-            bot, owner = self.client.get_user(740101772441550888), self.client.get_user(662329339232256038)
-
-            emb = discord.Embed(title='Cogs:', description=desc, colour=colour)
-            emb.set_footer(text=f'{bot.name} by {owner}', icon_url=owner.avatar_url)
-
-            await ctx.send(embed=emb)
-        except:
-            await ctx.message.add_reaction('❎')
-
+        cogs = []
+        for file in os.listdir("cogs"):
+            if file.endswith(".py"):
+                if file[:-3] in self.client.cogs.keys():
+                    cogs.append(f"{file[:-3]} (loaded)")
+                else:
+                    cogs.append(f"{file[:-3]} (unloaded)")
+        
+        content = "```" + "\n".join(cogs) + "```"
+        await ctx.send(embed=discord.Embed(title="", description=content, colour=discord.Colour.from_rgb(47, 49, 54)))
+        
 
 def setup(client):
     client.add_cog(Reload(client))

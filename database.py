@@ -1,14 +1,14 @@
 import sqlite3
 
 
-def create_database(path="data_files\data.sqlite"):
+def create_database(path):
     connection = sqlite3.connect(path)
     cursor = connection.cursor()
 
     tables = [
-        "CREATE TABLE IF NOT EXISTS users (login TEXT, password TEXT, group_bots INT PRIMARY KEY)",
-        "CREATE TABLE IF NOT EXISTS groups (group_id INT PRIMARY KEY, bots TEXT)",
-        "CREATE TABLE IF NOT EXISTS bots (ID INT PRIMARY KEY, name_bot TEXT, token TEXT)"
+        "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY, login TEXT, hashed_password TEXT, bot_group_id INT UNIQUE)",
+        "CREATE TABLE IF NOT EXISTS groups (id INT PRIMARY KEY, bot_ids TEXT)",
+        "CREATE TABLE IF NOT EXISTS bots (id INT PRIMARY KEY, name TEXT, token TEXT)"
     ]
 
     for table in tables:

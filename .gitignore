@@ -1,0 +1,6 @@
+__pycache__
+bot\__pycache__
+bot\cogs\__pycache__
+ui\converted\__pycache__
+widgets\__pycache__
+data\database.sqlite

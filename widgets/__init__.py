@@ -1,11 +1,8 @@
-from .ui_classes import MainProgram as MainProgramWidget
-from .ui_classes import Instruction as InstructionWidget
-from .ui_classes import StartBot as StartBotWidget
-
-from .AddBotWidget import AddBotWidget
-from .EntranceWidget import EntranceWidget
-from .RegistrationWidget import RegistrationWidget
-from .RemoveBotWidget import RemoveBotWidget
-from .ManagementBotWidget import ManagementBotWidget
-
-from .utils import Hash
+from .sign_in import SignInWidget
+from .sign_up import SignUpWidget
+from .menu import MenuWidget
+from .add_bot import AddBotWidget
+from .remove_bot import RemoveBotWidget
+from .start_bot import StartBotWidget
+from .instruction import InstructionWidget
+from .bot_management import BotManagementWidget
